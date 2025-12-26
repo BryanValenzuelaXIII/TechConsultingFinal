@@ -26,12 +26,17 @@ export default function LoginScreen(){
             </View>
             
             <View style={styles.form}>
-
+            <Text style= {styles.textForBox}>
+                {"Email"}
+            </Text>
             <TextInputBig 
                 typeOfText='emailAddress'
                 placeHolder='Please enter email'
                 onChangeText={setEmail}
             />
+            <Text style= {styles.textForBox}>
+                {"Password"}
+            </Text>
             <TextInputBig
                 typeOfText='password'
                 placeHolder='Please enter password'
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
     form: {flex: 3, backgroundColor: 'lightblue', borderTopLeftRadius: 40,
             justifyContent: 'center', 
     },
-    botonPlace: {alignItems: 'center'},
-
+    botonPlace: {alignItems: 'center', marginTop: 50},
+    textForBox: {fontSize: 25, fontWeight: '700', margin: 10},
     textTitle: {fontSize: 50, fontWeight: '700', margin: 10}
 })

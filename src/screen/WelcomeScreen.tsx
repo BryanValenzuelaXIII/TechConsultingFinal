@@ -2,8 +2,9 @@ import React from "react";
 import { Alert, Button, StyleSheet, Text, View } from "react-native";
 import ButtonFoward from '../components/ButtonFoward';
 import { useNavigation } from "@react-navigation/native";
+import { storage } from "../utils/MmkvStorage";
 
-export default function WelcomeScreen(){
+export default function WelcomeScreen({ setIsGuest }){
 
     const navigation = useNavigation();
 
@@ -13,6 +14,12 @@ export default function WelcomeScreen(){
 
         const goToSignup = () => {
             navigation.navigate("SignUpUser");
+        };
+
+        const goToMain = () => {
+            storage.set('user.isGuest', true);
+            console.log(storage.getBoolean('user.isGuest'));
+            setIsGuest(true);
         };
 
     const dummyAction = () => {
@@ -47,7 +54,7 @@ export default function WelcomeScreen(){
                 <View style={styles.guest}>
                     <Button 
                     title="Continue as a guest"
-                    onPress={dummyAction}
+                    onPress={goToMain}
                 />
                 </View>
                 

@@ -1,5 +1,6 @@
-import auth from '@react-native-firebase/auth';
+import auth, { getAuth, signOut } from '@react-native-firebase/auth';
 import { Alert } from 'react-native';
+import { storage } from './MmkvStorage';
 
 type Props = {
   email: string;
@@ -10,6 +11,7 @@ const FireBaseSignIn = async({email, password}: Props) =>{
 
         try{
             await auth().createUserWithEmailAndPassword(email, password);
+            storage.set('user.isGuest', false);
             Alert.alert('Please check your email to confirm');
         } catch(e: any){
             Alert.alert('Registration failed: ' + e.message);
@@ -21,6 +23,7 @@ const FireBaseLog = async({email, password}: Props) =>{
 
         try{
             await auth().signInWithEmailAndPassword(email, password);
+            storage.set('user.isGuest', false);
             Alert.alert('Login!');
         } catch(e: any){
             Alert.alert('Login failed: ' + e.message);
@@ -28,4 +31,15 @@ const FireBaseLog = async({email, password}: Props) =>{
         }
     }
 
-export {FireBaseSignIn, FireBaseLog}
+const FireBaseLogOut = async() =>{
+    try{
+        const authentication = getAuth();
+        await signOut(authentication);
+        Alert.alert("Successful logout");
+    } catch(e: any){
+        Alert.alert('Error logging out!');
+        console.log("Could not log out", e.message);
+    }
+}
+
+export {FireBaseSignIn, FireBaseLog, FireBaseLogOut}
