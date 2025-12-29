@@ -8,7 +8,7 @@ type Props = {
 const NavigateToPage = ({screenName}: Props) => {
     const navigation = useNavigation();
 
-        navigation.navigate(screenName);
+        //navigation.navigate(screenName);
 }
 
 export {NavigateToPage};

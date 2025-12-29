@@ -8,6 +8,9 @@ import BottomNavigationBar from "./BottomNavigationBar";
 import auth from '@react-native-firebase/auth';
 import { ActivityIndicator, View } from "react-native";
 import { storage } from "./utils/MmkvStorage";
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from "./redux/reduxStore";
+import { setTrue } from "./redux/guestSlice";
 
 const Stack = createStackNavigator();
 
@@ -17,11 +20,16 @@ const Navigation = () =>{
     const [isGuest, setIsGuest] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    const guest = useSelector((state: RootState) => state.guest.value)
+    const dispatch = useDispatch()
+
     useEffect(() => {
         const unsubscribe = auth().onAuthStateChanged(currentUser => {
             setUser(currentUser);
 
-            setIsGuest(storage.getBoolean('user.isGuest') ? true: false);
+            if(storage.getBoolean('user.isGuest')){
+                dispatch(setTrue());
+            } 
                 
             setLoading(false);
         });
@@ -41,11 +49,9 @@ const Navigation = () =>{
         <NavigationContainer>
             <Stack.Navigator>
             {
-                (!user && !isGuest) ? (
+                (!user && !guest) ? (
                     <>
-                        <Stack.Screen name="WelcomeScreen">
-                            {(props) => <WelcomeScreen {...props} setIsGuest={setIsGuest} />}
-                        </Stack.Screen>
+                        <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
                         <Stack.Screen name="LoginScreen" component={LoginScreen} />
                         <Stack.Screen name="SignUpUser" component={SignUpUser} />
                         

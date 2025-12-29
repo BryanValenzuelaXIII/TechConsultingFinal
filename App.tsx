@@ -12,6 +12,8 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import Navigation from './src/Navigation';
+import { store } from './src/redux/reduxStore'
+import { Provider } from 'react-redux'
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -21,7 +23,10 @@ function App() {
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <AppContent />
     </SafeAreaProvider>*/
-    <Navigation />
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
+    
   );
 }
 

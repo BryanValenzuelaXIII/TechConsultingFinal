@@ -3,13 +3,18 @@ import { Alert, ImageBackground, StyleSheet, Text, View } from "react-native";
 import ButtonFoward from "../components/ButtonFoward";
 import { FireBaseLogOut } from "../utils/FireBaseLogin";
 import { storage } from "../utils/MmkvStorage";
+import { setFalse } from "../redux/guestSlice";
+import { useDispatch } from "react-redux";
 
 const backImage = require('../../assets/savedBackground.png');
 
 export default function Saved(){
 
+    const dispatch = useDispatch()
+
     const fakeLogin = () => {
         storage.set('user.isGuest', false);
+        dispatch(setFalse());
     }
 
     const handleLogOut = () => {
@@ -37,14 +42,20 @@ export default function Saved(){
             
 
             <View style={styles.botones}>
-                <ButtonFoward 
-                    textInside="Log out!"
-                    pressAction={handleLogOut}
-                />
-                <ButtonFoward 
-                    textInside="fake Sign In!"
-                    pressAction={fakeLogin}
-                />
+                {
+                    storage.getBoolean('user.isGuest') ? (
+                        <ButtonFoward 
+                            textInside="fake Sign In!"
+                            pressAction={fakeLogin}
+                        />
+                    ) : (
+                       <ButtonFoward 
+                            textInside="Log out!"
+                            pressAction={handleLogOut}
+                        />
+                    )
+                }
+                
             </View>
         </View>
     )
