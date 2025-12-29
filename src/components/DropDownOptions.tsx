@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-} from "react-native";
+import {View, Text, TouchableOpacity, StyleSheet, FlatList,} from "react-native";
 
 type DropdownProps = {
   label: string;

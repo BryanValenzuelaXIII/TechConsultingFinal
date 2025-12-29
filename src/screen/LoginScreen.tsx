@@ -11,10 +11,6 @@ export default function LoginScreen(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const dummyAction = () => {
-            Alert.alert("Action trigger!");
-        }
-
     const handleSignUp = async () => {
         await FireBaseLog({ email, password });
     };

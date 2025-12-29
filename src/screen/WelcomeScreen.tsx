@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Button, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ButtonFoward from '../components/ButtonFoward';
 import { useNavigation } from "@react-navigation/native";
 import { storage } from "../utils/MmkvStorage";
@@ -55,10 +55,20 @@ export default function WelcomeScreen({ setIsGuest }){
                 
 
                 <View style={styles.guest}>
-                    <Button 
-                    title="Continue as a guest"
-                    onPress={goToMain}
-                />
+                   {
+                //     <Button 
+                //     title="Continue as a guest"
+                //     onPress={goToMain}
+                // />
+                   } 
+                   <TouchableOpacity
+                        onPress={goToMain}
+                        
+                        >
+                            <Text style={styles.texto}>
+                                {"Continue as a guest"}
+                            </Text>
+                    </TouchableOpacity>
                 </View>
                 
             </View>
@@ -81,6 +91,7 @@ const styles = StyleSheet.create({
     textTitle: {fontSize: 85, fontWeight: '700', marginLeft: 10, color: 'azure'},
     login: {marginTop: 40,},
     signIn: {marginTop: 15},
-    guest: {marginTop: 60, marginBottom: 10, }
+    guest: {marginTop: 60, marginBottom: 10, },
+    texto: {color: 'darkviolet', fontWeight: '600'}
 
 })

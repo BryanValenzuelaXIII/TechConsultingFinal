@@ -14,7 +14,7 @@ export default function SettingAndBar(){
         <View style = {styles.container}>
             <View style={styles.login}>
                 <Text style={styles.textTitle} >
-                 {"Saved clubs/events!"}
+                 {"Settings"}
                 </Text>
             </View>
         </View>
