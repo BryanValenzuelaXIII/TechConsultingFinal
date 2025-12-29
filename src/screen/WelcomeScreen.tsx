@@ -75,6 +75,6 @@ const styles = StyleSheet.create({
     textTitle: {fontSize: 85, fontWeight: '700', marginLeft: 10},
     login: {marginTop: 40},
     signIn: {marginTop: 15},
-    guest: {marginTop: 80}
+    guest: {marginTop: 60, marginBottom: 10}
 
 })

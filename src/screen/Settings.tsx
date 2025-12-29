@@ -21,7 +21,7 @@ export default function Settings(){
         <View style = {styles.container}>
             <View style={styles.login}>
                 <Text style={styles.textTitle} >
-                 {"Sign up into your new account!"}
+                 {"Saved (heart)"}
                 </Text>
             </View>
 
