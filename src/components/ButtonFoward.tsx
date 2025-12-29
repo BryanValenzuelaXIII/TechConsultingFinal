@@ -13,7 +13,7 @@ const ButtonFoward = memo(function ButtonFoward({pressAction, textInside}: Props
         onPress={pressAction}
         style = {styles.mainButton}
         >
-            <Text>
+            <Text style={styles.texto}>
                 {textInside}
             </Text>
         </TouchableOpacity>
@@ -23,7 +23,8 @@ const ButtonFoward = memo(function ButtonFoward({pressAction, textInside}: Props
 export default ButtonFoward;
 
 const styles = StyleSheet.create({
-    mainButton: {backgroundColor: 'cornflowerblue', height: 50, width: 150, borderRadius: 10, 
+    mainButton: {backgroundColor: 'darkviolet', height: 50, width: 150, borderRadius: 10, 
         alignItems: 'center', justifyContent: 'center', margin: 5
-    }
+    },
+    texto: {color: 'azure'}
 })

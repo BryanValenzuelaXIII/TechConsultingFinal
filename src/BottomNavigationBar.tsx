@@ -1,17 +1,57 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MainScreen from './screen/MainScreen';
-import Settings from './screen/Settings';
+import Saved from './screen/Saved';
 import PreferencesScreen from './screen/PreferencesScreen';
+import { Image } from 'react-native';
 
 const Tabs = createBottomTabNavigator();
+const mapIcon = require('../assets/icons8-map-25.png')
+const search = require('../assets/icons8-search-25.png')
+const heart = require('../assets/icons8-heart-25.png')
 
 function BottomNavigationBar(){
     return(
         <Tabs.Navigator>
-            <Tabs.Screen name="MainScreen" component={MainScreen}/>
-            <Tabs.Screen name="PreferencesScreen" component={PreferencesScreen}/>
-            <Tabs.Screen name="Settings" component={Settings}/>
+            <Tabs.Screen name="Search Club" component={MainScreen}
+                 options={{
+                        tabBarIcon: () => {
+                            return(
+                                <Image 
+                                source={search}
+                            />
+                            )
+                        }
+                    }}
+            />
+
+
+            <Tabs.Screen name="Map" component={PreferencesScreen}
+                options={{
+                        tabBarIcon: () => {
+                            return(
+                                <Image 
+                                source={mapIcon}
+                            />
+                            )
+                        }
+                    }}
+            />
+
+
+            <Tabs.Screen name="Saved" component={Saved}
+                options={{
+                        tabBarIcon: () => {
+                            return(
+                                <Image 
+                                source={heart}
+                            />
+                            )
+                        }
+                    }}
+            />
+
+
         </Tabs.Navigator>
     )
     

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, ImageBackground, StyleSheet, Text, View } from "react-native";
 import TextInputBig from "../components/TextInputBig";
 import ButtonFoward from '../components/ButtonFoward';
 import { FireBaseLog } from "../utils/FireBaseLogin";
+
+const backImage = require('../../assets/WelcomeImage.jpg')
 
 export default function LoginScreen(){
 
@@ -19,7 +21,8 @@ export default function LoginScreen(){
 
     return (
         <View style = {styles.container}>
-            <View style={styles.login}>
+            <ImageBackground source={backImage}  style={styles.image}>
+                <View style={styles.login}>
                 <Text style={styles.textTitle} >
                  {"Login into your\naccount!"}
                 </Text>
@@ -52,17 +55,20 @@ export default function LoginScreen(){
             
 
             </View>
+            </ImageBackground>
+            
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {flex: 1,},
-    login: {flex: 1, backgroundColor: 'white',  justifyContent: 'flex-end'},
-    form: {flex: 3, backgroundColor: 'lightblue', borderTopLeftRadius: 40,
+    image: {flex: 1, justifyContent: 'center',},
+    login: {flex: 1,  justifyContent: 'flex-end'},
+    form: {flex: 3, backgroundColor: 'rgba(255, 255, 255, 0.7)', borderTopLeftRadius: 40,
             justifyContent: 'center', 
     },
     botonPlace: {alignItems: 'center', marginTop: 50},
     textForBox: {fontSize: 25, fontWeight: '700', margin: 10},
-    textTitle: {fontSize: 50, fontWeight: '700', margin: 10}
+    textTitle: {fontSize: 50, fontWeight: '700', margin: 10, color: 'white'}
 })

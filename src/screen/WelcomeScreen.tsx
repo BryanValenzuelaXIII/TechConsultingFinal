@@ -1,8 +1,10 @@
 import React from "react";
-import { Alert, Button, StyleSheet, Text, View } from "react-native";
+import { Alert, Button, ImageBackground, StyleSheet, Text, View } from "react-native";
 import ButtonFoward from '../components/ButtonFoward';
 import { useNavigation } from "@react-navigation/native";
 import { storage } from "../utils/MmkvStorage";
+
+const backImage = require('../../assets/WelcomeImage.jpg') //pass in props
 
 export default function WelcomeScreen({ setIsGuest }){
 
@@ -28,7 +30,8 @@ export default function WelcomeScreen({ setIsGuest }){
 
     return (
         <View style = {styles.container}>
-            <View style={styles.welcoming}>
+            <ImageBackground source={backImage}  style={styles.image}>
+                <View style={styles.welcoming}>
                 <Text style={styles.textTitle}>
                     {amazingText}
                 </Text>
@@ -59,22 +62,25 @@ export default function WelcomeScreen({ setIsGuest }){
                 </View>
                 
             </View>
+            </ImageBackground>
         </View>
     )
 }
 
-const amazingText = 'Welcome to \nAmazing\napp!';
+const amazingText = 'Let\'s find a club that fits you!';
 
 const styles = StyleSheet.create({
-    container: {flex: 1, backgroundColor: 'white'},
+    container: {flex: 1,},
+    
+    image: {flex: 1, justifyContent: 'center',},
     welcoming: {flex: 3, justifyContent: 'flex-end'},
     options: {flex: 2,
-            backgroundColor: 'lightblue',
+            backgroundColor: 'rgba(255, 255, 255, 0.7)',
             alignItems: 'center',
             borderTopLeftRadius: 40,},
-    textTitle: {fontSize: 85, fontWeight: '700', marginLeft: 10},
-    login: {marginTop: 40},
+    textTitle: {fontSize: 85, fontWeight: '700', marginLeft: 10, color: 'azure'},
+    login: {marginTop: 40,},
     signIn: {marginTop: 15},
-    guest: {marginTop: 60, marginBottom: 10}
+    guest: {marginTop: 60, marginBottom: 10, }
 
 })

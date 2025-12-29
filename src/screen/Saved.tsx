@@ -4,7 +4,7 @@ import ButtonFoward from "../components/ButtonFoward";
 import { FireBaseLogOut } from "../utils/FireBaseLogin";
 import { storage } from "../utils/MmkvStorage";
 
-export default function Settings(){
+export default function Saved(){
 
     const fakeLogin = () => {
         storage.set('user.isGuest', false);
@@ -21,7 +21,7 @@ export default function Settings(){
         <View style = {styles.container}>
             <View style={styles.login}>
                 <Text style={styles.textTitle} >
-                 {"Saved (heart)"}
+                 {"Saved clubs/events!"}
                 </Text>
             </View>
 
