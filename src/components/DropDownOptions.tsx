@@ -20,34 +20,38 @@ const Dropdown: React.FC<DropdownProps> = ({
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
 
-      <TouchableOpacity
-        style={styles.dropdown}
-        onPress={() => setOpen(!open)}
-      >
-        <Text style={styles.value}>
-          {selectedValue ?? "Select an option"}
-        </Text>
-      </TouchableOpacity>
+      {/* Anchor */}
+      <View style={styles.anchor}>
+        <TouchableOpacity
+          style={styles.dropdown}
+          onPress={() => setOpen(!open)}
+          activeOpacity={0.7}
+        >
+          <Text style={styles.value}>
+            {selectedValue ?? "Select an option"}
+          </Text>
+        </TouchableOpacity>
 
-      {open && (
-        <View style={styles.list}>
-          <FlatList
-            data={options}
-            keyExtractor={(item) => item}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={styles.option}
-                onPress={() => {
-                  onSelect(item);
-                  setOpen(false);
-                }}
-              >
-                <Text style={styles.optionText}>{item}</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
-      )}
+        {open && (
+          <View style={styles.list}>
+            <FlatList
+              data={options}
+              keyExtractor={(item) => item}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.option}
+                  onPress={() => {
+                    onSelect(item);
+                    setOpen(false);
+                  }}
+                >
+                  <Text style={styles.optionText}>{item}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        )}
+      </View>
     </View>
   );
 };
@@ -62,28 +66,45 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     marginBottom: 8,
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
+
+  anchor: {
+    position: "relative", // 👈 important
+  },
+
   dropdown: {
     borderWidth: 2,
     borderColor: "black",
     borderRadius: 8,
     padding: 14,
-    marginHorizontal: 5
+    marginHorizontal: 5,
+    backgroundColor: "white",
   },
+
   value: {
-    fontSize: 16,
+    fontSize: 20,
   },
+
   list: {
+    position: "absolute", // 👈 prevents layout shifting
+    top: 60,              // below the dropdown
+    left: 5,
+    right: 5,
     borderWidth: 1,
     borderRadius: 8,
-    marginTop: 6,
+    backgroundColor: "white",
+    zIndex: 1000,
+    elevation: 5,         // Android
+    maxHeight: 200,
   },
+
   option: {
     padding: 14,
     borderBottomWidth: 1,
     borderBottomColor: "black",
   },
+
   optionText: {
     fontSize: 16,
   },

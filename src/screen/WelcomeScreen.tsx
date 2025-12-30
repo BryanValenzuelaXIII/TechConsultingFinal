@@ -2,13 +2,13 @@ import React from "react";
 import { Alert, Button, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ButtonFoward from '../components/ButtonFoward';
 import { useNavigation } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
 import { storage } from "../utils/MmkvStorage";
 import { setTrue } from "../redux/guestSlice";
+import { useDispatch } from "react-redux";
 
 const backImage = require('../../assets/WelcomeImage.jpg') //pass in props
 
-export default function WelcomeScreen({ setIsGuest }){
+export default function WelcomeScreen(){
 
     const dispatch = useDispatch()
     const navigation = useNavigation();
@@ -24,8 +24,6 @@ export default function WelcomeScreen({ setIsGuest }){
         const goToMain = () => {
             dispatch(setTrue());
             storage.set('user.isGuest', true);
-            //console.log(storage.getBoolean('user.isGuest'));
-            //setIsGuest(true);
         };
 
     const dummyAction = () => {
@@ -59,15 +57,8 @@ export default function WelcomeScreen({ setIsGuest }){
                 
 
                 <View style={styles.guest}>
-                   {
-                //     <Button 
-                //     title="Continue as a guest"
-                //     onPress={goToMain}
-                // />
-                   } 
                    <TouchableOpacity
                         onPress={goToMain}
-                        
                         >
                             <Text style={styles.texto}>
                                 {"Continue as a guest"}

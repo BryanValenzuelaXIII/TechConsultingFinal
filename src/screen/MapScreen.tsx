@@ -3,7 +3,7 @@ import { Alert, StyleSheet, Text, View } from "react-native";
 import Geolocation from '@react-native-community/geolocation';
 import { requestLocationPermission } from "../utils/PermisionRequest";
 import ButtonFoward from "../components/ButtonFoward";
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import TextInputBig from "../components/TextInputBig";
 
 type UserLocation = {
@@ -50,6 +50,18 @@ export default function PreferencesScreen(){
   }
     }
 
+    const dummyBars = [{latitude: 31.801098,
+                        longitude: -106.272550,
+                        title: "Mi casita",
+                        description: 'Ahi vive el arti'}, 
+                        {
+                        latitude: 31.791635,
+                        longitude: -106.269454,
+                        title: "Mi vecino",
+                        description: 'No se quien vive ahi'
+                        },
+                    ]
+
     return (
         <View style = {styles.container}>
             <View style={styles.login}>
@@ -68,10 +80,22 @@ export default function PreferencesScreen(){
                 region={{
                     latitude: userLocation.latitude ,
                     longitude: userLocation.longitude,
-                    latitudeDelta: 0.015,
-                    longitudeDelta: 0.0121,
+                    latitudeDelta: 0.085,
+                    longitudeDelta: 0.0821,
                 }}
-                ></MapView>
+                >
+                {dummyBars.map((bar, index) => (
+                    <Marker
+                    key={index}
+                    coordinate={{
+                        latitude: bar.latitude,
+                        longitude: bar.longitude,
+                    }}
+                    title={bar.title}
+                    description={bar.description}
+                    />
+                ))}
+                </MapView>
                 ) : (
                     <MapView
                 provider={PROVIDER_GOOGLE} 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MainScreen from './screen/MainScreen';
 import Saved from './screen/Saved';
-import PreferencesScreen from './screen/PreferencesScreen';
+import MapScreen from './screen/MapScreen';
 import { Image } from 'react-native';
 
 const Tabs = createBottomTabNavigator();
@@ -26,7 +26,7 @@ function BottomNavigationBar(){
             />
 
 
-            <Tabs.Screen name="Map" component={PreferencesScreen}
+            <Tabs.Screen name="Map" component={MapScreen}
                 options={{
                         tabBarIcon: () => {
                             return(

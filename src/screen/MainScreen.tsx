@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, ImageBackground, StyleSheet, Text, View } from "react-native";
 import Dropdown from "../components/DropDownOptions";
 
-const backImage = require('../../assets/searchClubB.jpg')
+const backImage = require('../../assets/club_placeholder.jpg')
 
 export default function WelcomeScreen(){
 
@@ -57,7 +57,7 @@ export default function WelcomeScreen(){
 const styles = StyleSheet.create({
     container: {flex: 1,},
     image: {flex: 1, justifyContent: 'center',},
-    login: {flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.7)', justifyContent: 'space-around', borderTopLeftRadius: 50, marginTop: 13 },
+    login: {flex: 1, backgroundColor: 'rgba(255, 255, 255, 0.6)', justifyContent: 'space-around', borderTopLeftRadius: 50, marginTop: 13 },
     
 
     textTitle: {fontSize: 25, fontWeight: '700', margin: 10}
