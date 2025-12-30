@@ -1,29 +1,59 @@
 import React from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
-import ButtonFoward from "../components/ButtonFoward";
-import { FireBaseLogOut } from "../utils/FireBaseLogin";
 import { storage } from "../utils/MmkvStorage";
+import ButtonFoward from "../components/ButtonFoward";
+import { useDispatch } from "react-redux";
+import { setFalse } from "../redux/guestSlice";
+import { FireBaseLogOut } from "../utils/FireBaseLogin";
 
-export default function SettingAndBar(){
+export default function SettingAndBar() {
 
     const dummyAction = () => {
-            Alert.alert("Action trigger!");
-        }
+        Alert.alert("Action trigger!");
+    }
+
+    const dispatch = useDispatch()
+
+    const fakeLogin = () => {
+        storage.set('user.isGuest', false);
+        dispatch(setFalse());
+    }
+
+    const handleLogOut = () => {
+        FireBaseLogOut();
+    }
 
     return (
-        <View style = {styles.container}>
+        <View style={styles.container}>
             <View style={styles.login}>
                 <Text style={styles.textTitle} >
-                 {"Settings"}
+                    {"Settings"}
                 </Text>
             </View>
+
+            <View style={styles.botones}>
+                {
+                    storage.getBoolean('user.isGuest') ? (
+                        <ButtonFoward 
+                            textInside="fake Sign In!"
+                            pressAction={fakeLogin}
+                        />
+                    ) : (
+                       <ButtonFoward 
+                            textInside="Log out!"
+                            pressAction={handleLogOut}
+                        />
+                    )
+                }
+            </View>
+
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {flex: 1,},
-    login: {flex: 1, backgroundColor: 'white',  alignContent: 'center'},
-    botones: {justifyContent: 'center'},
-    textTitle: {fontSize: 40, fontWeight: '700', margin: 10}
+    container: { flex: 1, },
+    login: { flex: 1, backgroundColor: 'white', alignContent: 'center' },
+    botones: { justifyContent: 'center' },
+    textTitle: { fontSize: 40, fontWeight: '700', margin: 10 }
 })

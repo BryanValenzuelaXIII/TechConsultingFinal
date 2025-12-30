@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,6 +12,7 @@ import { storage } from "./utils/MmkvStorage";
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from "./redux/reduxStore";
 import { setTrue } from "./redux/guestSlice";
+import SettingAndBar from "./screen/SettingAndBar";
 
 const Stack = createStackNavigator();
 
@@ -58,7 +60,11 @@ const Navigation = () =>{
                     </>
 
                 ) : (
+                    <>
                         <Stack.Screen name="BottomNavigationBar" component={BottomNavigationBar} options={{ headerShown: false }} />
+                        <Stack.Screen name="Settings" component={SettingAndBar} />
+                    </>
+                        
                 )
             }
 

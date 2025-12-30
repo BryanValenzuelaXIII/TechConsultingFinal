@@ -4,6 +4,7 @@ import MainScreen from './screen/MainScreen';
 import Saved from './screen/Saved';
 import MapScreen from './screen/MapScreen';
 import { Image } from 'react-native';
+import ProfileButton from './components/ProfileButton';
 
 const Tabs = createBottomTabNavigator();
 const mapIcon = require('../assets/icons8-map-25.png')
@@ -12,7 +13,10 @@ const heart = require('../assets/icons8-heart-25.png')
 
 function BottomNavigationBar(){
     return(
-        <Tabs.Navigator>
+        <Tabs.Navigator 
+        screenOptions={({navigation}) => ({
+            headerRight: () => <ProfileButton navigation={navigation} />
+        })}>
             <Tabs.Screen name="Search Club" component={MainScreen}
                  options={{
                         tabBarIcon: () => {

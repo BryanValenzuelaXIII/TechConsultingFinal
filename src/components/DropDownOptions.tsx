@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "black",
     borderRadius: 8,
-    padding: 14,
+    padding: 10,
     marginHorizontal: 5,
     backgroundColor: "white",
   },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   },
 
   option: {
-    padding: 14,
+    padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: "black",
   },

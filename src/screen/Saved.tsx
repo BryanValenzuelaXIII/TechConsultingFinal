@@ -10,20 +10,6 @@ const backImage = require('../../assets/savedBackground.png');
 
 export default function Saved(){
 
-    const dispatch = useDispatch()
-
-    const fakeLogin = () => {
-        storage.set('user.isGuest', false);
-        dispatch(setFalse());
-    }
-
-    const handleLogOut = () => {
-        FireBaseLogOut();
-    }
-    const dummyAction = () => {
-            Alert.alert("Action trigger!");
-        }
-
     return (
         <View style = {styles.container}>
             <ImageBackground source={backImage}  style={styles.image}>
@@ -40,23 +26,6 @@ export default function Saved(){
                 </View>
             </ImageBackground>
             
-
-            <View style={styles.botones}>
-                {
-                    storage.getBoolean('user.isGuest') ? (
-                        <ButtonFoward 
-                            textInside="fake Sign In!"
-                            pressAction={fakeLogin}
-                        />
-                    ) : (
-                       <ButtonFoward 
-                            textInside="Log out!"
-                            pressAction={handleLogOut}
-                        />
-                    )
-                }
-                
-            </View>
         </View>
     )
 }
