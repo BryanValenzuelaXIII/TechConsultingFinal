@@ -5,12 +5,25 @@ import ButtonFoward from "../components/ButtonFoward";
 import { useDispatch } from "react-redux";
 import { setFalse } from "../redux/guestSlice";
 import { FireBaseLogOut } from "../utils/FireBaseLogin";
+import OptionsBotton from "../components/OptionsBotton";
 
 export default function SettingAndBar() {
 
-    const dummyAction = () => {
-        Alert.alert("Action trigger!");
-    }
+
+
+    const settingOptions = [{id: 0,
+        label: "Edit preferences",
+    }, {
+        id: 1,
+        label: 'Edit your bars',
+    }, {
+        id: 2,
+        label: 'Add your bar/club',
+    },
+     {
+        id: 3,
+        label: 'Edit your profile',
+    }]
 
     const dispatch = useDispatch()
 
@@ -30,6 +43,9 @@ export default function SettingAndBar() {
                     {"Settings"}
                 </Text>
             </View>
+            <OptionsBotton 
+                data={settingOptions}
+            />
 
             <View style={styles.botones}>
                 {

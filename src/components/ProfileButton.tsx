@@ -12,12 +12,6 @@ export default function ProfileButton(){
         };
 
     return(
-        // <TouchableOpacity
-        // onPress={goToSettings}>
-        //     <Text style={styles.textInside}>
-        //         {'Profile'}
-        //     </Text>
-        // </TouchableOpacity>
         <ButtonFoward 
             textInside="Profile"
             pressAction={goToSettings}
