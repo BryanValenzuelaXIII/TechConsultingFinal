@@ -11,7 +11,8 @@ export default function OptionsBotton({ data }: Props) {
         data={data}
         renderItem={
             ({ item }) => 
-            <TouchableOpacity style={styles.opciones} >
+            <TouchableOpacity style={styles.opciones} 
+                onPress={item.execute}>
                 <Text style={styles.texto} >
                     {item.label}
                 </Text>

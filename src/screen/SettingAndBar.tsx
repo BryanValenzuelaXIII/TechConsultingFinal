@@ -23,9 +23,18 @@ export default function SettingAndBar() {
      {
         id: 3,
         label: 'Edit your profile',
+        execute: dummyFunction,
     }]
 
     const dispatch = useDispatch()
+
+    function dummyFunction(){
+        console.log("press button")
+    }
+
+    function dummyFunction2(){
+        console.log("preciono buton 2")
+    }
 
     const fakeLogin = () => {
         storage.set('user.isGuest', false);
