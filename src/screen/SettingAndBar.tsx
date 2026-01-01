@@ -7,27 +7,34 @@ import { setFalse } from "../redux/guestSlice";
 import { FireBaseLogOut } from "../utils/FireBaseLogin";
 import OptionsBotton from "../components/OptionsBotton";
 import { useNavigation } from "@react-navigation/native";
+import SubTitle from "../components/SubTitle";
 
 
 export default function SettingAndBar() {
 
     const navigation = useNavigation();
 
-    const settingOptions = [{id: 0,
+    const userOptions = [
+    {
+        id: 0,
         label: "Edit preferences",
     }, {
         id: 1,
-        label: 'Edit your bars',
-    }, {
+        label: 'Edit your profile',
+        execute: dummyFunction,
+    },]
+
+    const barOptions = [
+        {
         id: 2,
         label: 'Add your bar/club',
         execute: () => {navigation.navigate('AddBar')}
     },
-     {
+    {
         id: 3,
-        label: 'Edit your profile',
-        execute: dummyFunction,
-    }]
+        label: 'Edit your bars',
+    },
+    ] 
 
     const dispatch = useDispatch()
 
@@ -55,22 +62,41 @@ export default function SettingAndBar() {
                     {"Settings"}
                 </Text>
             </View>
-            <OptionsBotton 
-                data={settingOptions}
-            />
-
-            <View style={styles.botones}>
-                {
+            <View style={styles.opciones}>
+                <SubTitle 
+                    sub="PROFILE"
+                />
+                <OptionsBotton 
+                    data={userOptions}
+                />
+                <SubTitle 
+                    sub="BARS"
+                />
+                <OptionsBotton 
+                    data={barOptions}
+                />
+                 {
                     storage.getBoolean('user.isGuest') ? (
-                        <ButtonFoward 
+                        <View>
+                            <SubTitle 
+                                sub="SIGN IN"
+                            />
+                            <ButtonFoward 
                             textInside="fake Sign In!"
                             pressAction={fakeLogin}
                         />
+                        </View>
+                        
                     ) : (
-                       <ButtonFoward 
-                            textInside="Log out!"
-                            pressAction={handleLogOut}
-                        />
+                        <View>
+                            <SubTitle 
+                                sub="SIGN IN"
+                            />
+                        <ButtonFoward 
+                                textInside="Log out!"
+                                pressAction={handleLogOut}
+                            />
+                        </View>
                     )
                 }
             </View>
@@ -81,7 +107,8 @@ export default function SettingAndBar() {
 
 const styles = StyleSheet.create({
     container: { flex: 1, },
-    login: { flex: 1, backgroundColor: 'white', alignContent: 'center' },
-    botones: { justifyContent: 'center' },
+    login: { backgroundColor: 'white', alignContent: 'center' },
+    opciones: {flex: 1, justifyContent: 'flex-start', backgroundColor: 'white'},
+    botones: { },
     textTitle: { fontSize: 40, fontWeight: '700', margin: 10 }
 })
