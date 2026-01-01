@@ -57,11 +57,7 @@ export default function SettingAndBar() {
 
     return (
         <View style={styles.container}>
-            <View style={styles.login}>
-                <Text style={styles.textTitle} >
-                    {"Settings"}
-                </Text>
-            </View>
+            
             <View style={styles.opciones}>
                 <SubTitle 
                     sub="PROFILE"
@@ -75,30 +71,26 @@ export default function SettingAndBar() {
                 <OptionsBotton 
                     data={barOptions}
                 />
+                <View style={styles.botones}>
                  {
                     storage.getBoolean('user.isGuest') ? (
-                        <View>
-                            <SubTitle 
-                                sub="SIGN IN"
-                            />
+                        
                             <ButtonFoward 
                             textInside="fake Sign In!"
                             pressAction={fakeLogin}
                         />
-                        </View>
+                        
                         
                     ) : (
-                        <View>
-                            <SubTitle 
-                                sub="SIGN IN"
-                            />
+                        
                         <ButtonFoward 
                                 textInside="Log out!"
                                 pressAction={handleLogOut}
                             />
-                        </View>
+                        
                     )
                 }
+                </View>
             </View>
 
         </View>
@@ -109,6 +101,6 @@ const styles = StyleSheet.create({
     container: { flex: 1, },
     login: { backgroundColor: 'white', alignContent: 'center' },
     opciones: {flex: 1, justifyContent: 'flex-start', backgroundColor: 'white'},
-    botones: { },
+    botones: { alignItems: 'center', marginTop: 'auto', paddingBottom: 20},
     textTitle: { fontSize: 40, fontWeight: '700', margin: 10 }
 })

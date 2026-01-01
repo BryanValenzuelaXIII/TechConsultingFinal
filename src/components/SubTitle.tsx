@@ -17,5 +17,5 @@ export default function SubTitle({sub}: Props){
 
 const styles = StyleSheet.create({
     container: {margin: 10, backgroundColor: 'white'},
-    text : {fontSize: 25, color: 'red', fontWeight: '400'}
+    text : {fontSize: 25, color: 'darkviolet', fontWeight: '400'}
 })
