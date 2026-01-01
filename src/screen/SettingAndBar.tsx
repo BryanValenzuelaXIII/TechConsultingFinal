@@ -6,10 +6,12 @@ import { useDispatch } from "react-redux";
 import { setFalse } from "../redux/guestSlice";
 import { FireBaseLogOut } from "../utils/FireBaseLogin";
 import OptionsBotton from "../components/OptionsBotton";
+import { useNavigation } from "@react-navigation/native";
+
 
 export default function SettingAndBar() {
 
-
+    const navigation = useNavigation();
 
     const settingOptions = [{id: 0,
         label: "Edit preferences",
@@ -19,6 +21,7 @@ export default function SettingAndBar() {
     }, {
         id: 2,
         label: 'Add your bar/club',
+        execute: () => {navigation.navigate('AddBar')}
     },
      {
         id: 3,

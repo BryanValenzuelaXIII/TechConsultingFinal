@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from "./redux/reduxStore";
 import { setTrue } from "./redux/guestSlice";
 import SettingAndBar from "./screen/SettingAndBar";
+import AddBar from "./screen/AddBar";
 
 const Stack = createStackNavigator();
 
@@ -63,6 +64,7 @@ const Navigation = () =>{
                     <>
                         <Stack.Screen name="BottomNavigationBar" component={BottomNavigationBar} options={{ headerShown: false }} />
                         <Stack.Screen name="Settings" component={SettingAndBar} />
+                        <Stack.Screen name="AddBar" component={AddBar} />
                     </>
                         
                 )
