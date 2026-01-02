@@ -61,6 +61,6 @@ export default EditPreferences
 
 const styles = StyleSheet.create({
     container: {flex: 1},
-    boxForm: {margin: 20, borderWidth: 1, borderRadius: 13, padding: 13},
+    boxForm: {margin: 20, borderWidth: 1, borderRadius: 13, padding: 13, elevation: 13, backgroundColor: 'white'},
     botones: { alignItems: 'center', marginTop: 'auto', paddingBottom: 20},
 })
