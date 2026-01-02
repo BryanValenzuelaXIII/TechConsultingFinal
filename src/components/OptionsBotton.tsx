@@ -29,8 +29,8 @@ export default function OptionsBotton({ data }: Props) {
 }
 
 const styles = StyleSheet.create({
-    opciones: {height: 50, backgroundColor: 'white', borderColor: 'white', borderWidth: 1, borderBottomColor: 'gray',
+    opciones: {height: 44, backgroundColor: 'white', borderColor: 'white', borderWidth: 1, borderBottomColor: 'gray',
         marginLeft: 10
      },
-    texto: {fontSize: 24, color: 'gray'}
+    texto: {fontSize: 22, color: 'gray'}
 })

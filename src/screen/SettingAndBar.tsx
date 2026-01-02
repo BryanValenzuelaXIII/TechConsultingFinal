@@ -32,7 +32,7 @@ export default function SettingAndBar() {
     },
     {
         id: 3,
-        label: 'Edit your bars',
+        label: 'Edit your bar/club',
     },
     ] 
 
@@ -76,7 +76,7 @@ export default function SettingAndBar() {
                     storage.getBoolean('user.isGuest') ? (
                         
                             <ButtonFoward 
-                            textInside="fake Sign In!"
+                            textInside="Sign In!"
                             pressAction={fakeLogin}
                         />
                         
