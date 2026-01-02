@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import Geolocation from '@react-native-community/geolocation';
 import { requestLocationPermission } from "../utils/PermisionRequest";
 import ButtonFoward from "../components/ButtonFoward";
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import TextInputBig from "../components/TextInputBig";
+import { useFocusEffect } from "@react-navigation/native";
 
 type UserLocation = {
     latitude: number;
@@ -14,7 +15,6 @@ type UserLocation = {
 export default function PreferencesScreen() {
 
     const [userLocation, setUserLocation] = useState<UserLocation | null>(null);
-
 
     const getLocation = async () => {
         try {
@@ -46,6 +46,16 @@ export default function PreferencesScreen() {
             console.log('Error getting the location', e);
         }
     }
+
+    useFocusEffect( useCallback(() => {
+        console.log("Screen focused");
+        getLocation();
+
+        return () => {
+            console.log("Screen unfocused");
+        };
+    }, [])
+    )
 
     const dummyBars = [{
         latitude: 31.801098,
