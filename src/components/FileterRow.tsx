@@ -2,15 +2,15 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 type Props = {
-  label: string;
+  titulo: string;
   value: string | null;
   onPress: () => void;
 };
 
-export default function FilterRow({ label, value, onPress }: Props) {
+export default function FilterRow({ titulo, value, onPress }: Props) {
   return (
     <TouchableOpacity style={styles.row} onPress={onPress}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={styles.titulo}>{titulo}</Text>
       <Text style={styles.value}>
         {value ?? "Select an option"}
       </Text>
@@ -19,19 +19,7 @@ export default function FilterRow({ label, value, onPress }: Props) {
 }
 
 const styles = StyleSheet.create({
-  row: {
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 15,
-    marginVertical: 8
-  },
-  label: {
-    fontSize: 14,
-    color: "#555"
-  },
-  value: {
-    fontSize: 16,
-    fontWeight: "500",
-    marginTop: 4
-  }
+  row: { backgroundColor: "white", borderRadius: 12, padding: 15, marginVertical: 8},
+  titulo: {fontSize: 14, color: "darkviolet", fontWeight: 'bold', },
+  value: {fontSize: 16, fontWeight: "500", marginTop: 4}
 });

@@ -26,32 +26,32 @@ export default function WelcomeScreen() {
       <ImageBackground source={backImage} style={styles.image}>
         <View style={styles.panel}>
           <FilterRow
-            label="Music type"
+            titulo="Music type"
             value={music}
             onPress={() => setActiveModal("music")}
           />
 
           <FilterRow
-            label="Theme"
+            titulo="Theme"
             value={theme}
             onPress={() => setActiveModal("theme")}
           />
 
           <FilterRow
-            label="Max distance"
+            titulo="Max distance"
             value={distance}
             onPress={() => setActiveModal("distance")}
           />
 
           <FilterRow
-            label="When are you going?"
+            titulo="When are you going?"
             value={time}
             onPress={() => setActiveModal("time")}
           />
 
           <View style={styles.botones}>
                 <ButtonFoward 
-                textInside="Change preferences"
+                textInside="Look for a bar!"
                 pressAction={dummyFunction}
             />
             </View>

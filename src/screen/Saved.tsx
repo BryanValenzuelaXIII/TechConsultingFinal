@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ButtonFoward from "../components/ButtonFoward";
 import { FireBaseLogOut } from "../utils/FireBaseLogin";
 import { storage } from "../utils/MmkvStorage";
@@ -17,12 +17,24 @@ export default function Saved(){
                     <Text style={styles.textTitle} >
                     {"Saved clubs/events!"}
                     </Text>
-                    <Text style={styles.textSubTitle}>
-                        {"Clubs                              ^"}
-                    </Text> 
-                    <Text style={styles.textSubTitle}>
-                        {"Events                            ^"}
-                    </Text>
+                    <TouchableOpacity style={{flexDirection: 'row' , height: 70, }}>
+                        <Text style = {{ fontSize: 30, fontWeight: '700', margin: 10}}>
+                            {"Clubs"}
+                        </Text>
+                        <Image 
+                            style={{ marginRight: 10, marginLeft: 'auto'}}
+                            source={require('../../assets/icons8-dropdown-48.png')}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{flexDirection: 'row' , height: 70, }}>
+                        <Text style = {{ fontSize: 30, fontWeight: '700', margin: 10}}>
+                            {"Events"}
+                        </Text>
+                        <Image 
+                            style={{ marginRight: 10, marginLeft: 'auto'}}
+                            source={require('../../assets/icons8-dropdown-48.png')}
+                        />
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
             

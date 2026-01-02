@@ -14,17 +14,17 @@ import {
 import Navigation from './src/Navigation';
 import { store } from './src/redux/reduxStore'
 import { Provider } from 'react-redux'
+import ErrorBoundary from './src/utils/ErrorBoundary'
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    /*<SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>*/
     <Provider store={store}>
-      <Navigation />
+      <ErrorBoundary>
+        <Navigation />
+      </ErrorBoundary>
+      
     </Provider>
     
   );
