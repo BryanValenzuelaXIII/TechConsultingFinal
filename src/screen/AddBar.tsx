@@ -10,7 +10,6 @@ function AddBar() {
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
     const [musicType, setMusicType] = useState('');
-    const [theme, setTheme] = useState('');
     const [operationHours, setOperationHours] = useState('');
     const [age, setAge] = useState('')
 
@@ -86,6 +85,6 @@ export default AddBar;
 
 const styles = StyleSheet.create({
     container: {flex: 1},
-    boxForm: {margin: 20, borderWidth: 1, borderRadius: 13, },
+    boxForm: {margin: 20, borderWidth: 1, borderRadius: 13, padding: 13},
     botones: { alignItems: 'center', marginTop: 'auto', paddingBottom: 20},
 })

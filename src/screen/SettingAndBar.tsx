@@ -18,21 +18,47 @@ export default function SettingAndBar() {
     {
         id: 0,
         label: "Edit preferences",
-    }, {
+         execute: () => {
+            storage.getBoolean('user.isGuest') ? (
+                Alert.alert("Please login to use this future")
+            ): (
+                navigation.navigate('EditPreferences')
+            )
+        }
+    }, { 
         id: 1,
         label: 'Edit your profile',
-        execute: dummyFunction,
-    },]
+        execute: () => {
+            storage.getBoolean('user.isGuest') ? (
+                Alert.alert("Please login to use this future")
+            ): (
+                navigation.navigate('EditProfile')
+            )
+        }
+    },] 
 
     const barOptions = [
         {
         id: 2,
         label: 'Add your bar/club',
-        execute: () => {navigation.navigate('AddBar')}
+        execute: () => {
+            storage.getBoolean('user.isGuest') ? (
+                Alert.alert("Please login to use this future")
+            ): (
+                navigation.navigate('AddBar')
+            )
+        }
     },
     {
         id: 3,
         label: 'Edit your bar/club',
+        execute: () => {
+            storage.getBoolean('user.isGuest') ? (
+                Alert.alert("Please login to use this future")
+            ): (
+                navigation.navigate('EditBars')
+            )
+        }
     },
     ] 
 

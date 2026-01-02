@@ -14,6 +14,9 @@ import { RootState } from "./redux/reduxStore";
 import { setTrue } from "./redux/guestSlice";
 import SettingAndBar from "./screen/SettingAndBar";
 import AddBar from "./screen/AddBar";
+import EditPreferences from "./screen/EditPreferences";
+import EditProfile from "./screen/EditProfile";
+import EditBars from "./screen/EditBars";
 
 const Stack = createStackNavigator();
 
@@ -65,6 +68,9 @@ const Navigation = () =>{
                         <Stack.Screen name="BottomNavigationBar" component={BottomNavigationBar} options={{ headerShown: false }} />
                         <Stack.Screen name="Settings" component={SettingAndBar} />
                         <Stack.Screen name="AddBar" component={AddBar} />
+                        <Stack.Screen name="EditPreferences" component={EditPreferences} />
+                        <Stack.Screen name="EditProfile" component={EditProfile} />
+                        <Stack.Screen name="EditBars" component={EditBars} />
                     </>
                         
                 )

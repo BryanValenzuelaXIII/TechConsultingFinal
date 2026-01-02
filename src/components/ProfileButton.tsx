@@ -1,28 +1,25 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import ButtonFoward from "./ButtonFoward";
+import { TouchableOpacity, StyleSheet, Image } from "react-native";
 
-export default function ProfileButton(){
 
-    const navigation = useNavigation();
+export default function ProfileButton() {
+  const navigation = useNavigation();
 
-    const goToSettings = () => {
-            navigation.navigate("Settings");
-        };
+  const goToSettings = () => {
+    navigation.navigate("Settings");
+  };
 
-    return(
-        <ButtonFoward 
-            textInside="Profile"
-            pressAction={goToSettings}
-        />
-    )
+  return (
+    <TouchableOpacity onPress={goToSettings} style={styles.container}>
+      <Image 
+        source={require('../../assets/icons8-user-40.png')}
+      />
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({
-    textInside: {
-        fontSize: 13,
-        color: 'darkviolet', 
-        fontWeight: '600'
-    }
-})
+  container: {
+    padding: 6
+  }
+});
