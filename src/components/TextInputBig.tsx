@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
         margin: 10, 
         marginHorizontal: 10,
         paddingHorizontal: 12,
-        paddingVertical: 8,}
+        paddingVertical: 8,
+        fontWeight: 'bold'}
 })

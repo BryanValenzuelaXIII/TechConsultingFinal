@@ -1,14 +1,15 @@
-import React from "react";
-import { Alert, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import ButtonFoward from "../components/ButtonFoward";
-import { FireBaseLogOut } from "../utils/FireBaseLogin";
-import { storage } from "../utils/MmkvStorage";
-import { setFalse } from "../redux/guestSlice";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import {Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const backImage = require('../../assets/savedBackground.png');
 
 export default function Saved(){
+
+    const [showBars, setShowBars] = useState(false);
+
+    const showHide = () =>{
+        setShowBars(!showBars);
+    }
 
     return (
         <View style = {styles.container}>
@@ -17,7 +18,8 @@ export default function Saved(){
                     <Text style={styles.textTitle} >
                     {"Saved clubs/events!"}
                     </Text>
-                    <TouchableOpacity style={{flexDirection: 'row' , height: 70, }}>
+                    <TouchableOpacity style={{flexDirection: 'row' , height: 70, }}
+                        onPress={showHide}>
                         <Text style = {{ fontSize: 30, fontWeight: '700', margin: 10}}>
                             {"Clubs"}
                         </Text>
@@ -26,6 +28,14 @@ export default function Saved(){
                             source={require('../../assets/icons8-dropdown-48.png')}
                         />
                     </TouchableOpacity>
+                    {
+                        showBars ? (
+                             <Text>
+                                Hello new world
+                            </Text>
+                        ) : <></> 
+                           
+                    }
                     <TouchableOpacity style={{flexDirection: 'row' , height: 70, }}>
                         <Text style = {{ fontSize: 30, fontWeight: '700', margin: 10}}>
                             {"Events"}

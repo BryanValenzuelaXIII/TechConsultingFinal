@@ -4,6 +4,8 @@ import TextInputBig from "../components/TextInputBig";
 import ButtonFoward from "../components/ButtonFoward";
 import {storeDocumentWithId} from "../utils/FireBaseStore"
 import FormText from "../components/FormText";
+import { storage } from "../utils/MmkvStorage";
+import { useNavigation } from "@react-navigation/native";
 
 function AddBar() {
 
@@ -11,19 +13,45 @@ function AddBar() {
     const [location, setLocation] = useState('');
     const [musicType, setMusicType] = useState('');
     const [operationHours, setOperationHours] = useState('');
+    const [cost, setCost] = useState('')
+
     const [age, setAge] = useState('')
+
+    const navigation = useNavigation();
 
     const bar = {
         name: name,
         location: location,
         musicType: musicType,
         operationHours: operationHours,
+        owner: storage.getString("user.email"),
+        cost: cost,
+        age: age,
         songsListed: ["Apology", "zouk", 'perro negro', 'Con calma', 'sun flowers']
     }
 
+    function getStringArray(key: string): string[] {
+        const allBars = storage.getString(key);
+        return allBars ? JSON.parse(allBars) : [];
+        //this is to get all owners bars
+    }
+
+    function setStringArray(key: string, allBars: string[]) {
+       storage.set(key, JSON.stringify(allBars));
+       //this is to update owners bars
+     }
+
     function submit(){
         storeDocumentWithId('Bars', name, bar);
-        
+
+
+        const existingBars = getStringArray("user.ownerBars");
+        const updatedBars = [...existingBars, name];
+
+        setStringArray("user.ownerBars", updatedBars);
+
+        Alert.alert("Bar added!");
+        navigation.goBack();
     }
 
     return(
@@ -69,6 +97,15 @@ function AddBar() {
                 placeHolder="21+"
                 onChangeText={setAge}
             />
+            <FormText 
+                requireText="Cover cost?"
+             />
+              <TextInputBig 
+                typeOfText="name"
+                placeHolder="$"
+                onChangeText={setAge}
+            />
+
             </View>
             <View style={styles.botones}>
                 <ButtonFoward 

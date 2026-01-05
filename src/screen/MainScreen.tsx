@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { Alert, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Dropdown from "../components/DropDownOptions";
 import FilterModal from "../components/FilterModal";
 import FilterRow from "../components/FileterRow";
@@ -9,16 +9,22 @@ const backImage = require('../../assets/club_placeholder.jpg')
 
 export default function WelcomeScreen() {
   const [activeModal, setActiveModal] = useState<
-    "music" | "theme" | "distance" | "time" | null
+    "music" | "age" | "distance" | "cost" | "hours" | null
   >(null);
 
   const [music, setMusic] = useState<string | null>(null);
-  const [theme, setTheme] = useState<string | null>(null);
+  const [age, setAge] = useState<string | null>(null);
   const [distance, setDistance] = useState<string | null>(null);
-  const [time, setTime] = useState<string | null>(null);
+  const [cost, setCost] = useState<string | null>(null);
+  const [hours, setHours] = useState<string | null>(null);
 
   function dummyFunction(){
         console.log("dummy function inside editpreferences")
+      setMusic(null);
+      setAge(null);
+      setDistance(null);
+      setCost(null);
+      setHours(null);
     }
 
   return (
@@ -32,21 +38,27 @@ export default function WelcomeScreen() {
           />
 
           <FilterRow
-            titulo="Theme"
-            value={theme}
-            onPress={() => setActiveModal("theme")}
-          />
-
-          <FilterRow
             titulo="Max distance"
             value={distance}
             onPress={() => setActiveModal("distance")}
           />
 
           <FilterRow
-            titulo="When are you going?"
-            value={time}
-            onPress={() => setActiveModal("time")}
+            titulo="Age"
+            value={age}
+            onPress={() => setActiveModal("age")}
+          />
+
+          <FilterRow
+            titulo="Cost"
+            value={cost}
+            onPress={() => setActiveModal("cost")}
+          />
+
+          <FilterRow
+            titulo="Hours"
+            value={hours}
+            onPress={() => setActiveModal("hours")}
           />
 
           <View style={styles.botones}>
@@ -55,6 +67,19 @@ export default function WelcomeScreen() {
                 pressAction={dummyFunction}
             />
             </View>
+
+          <View style={styles.erase}>
+            <TouchableOpacity
+              onPress={dummyFunction}
+            >
+                <Text style={styles.texto}>
+                  {"Reset fields" /*create function + create in utils filter results */}
+                </Text>
+            </TouchableOpacity>
+          </View>
+            
+
+
         </View>
       </ImageBackground>
 
@@ -66,27 +91,36 @@ export default function WelcomeScreen() {
         onClose={() => setActiveModal(null)}
       />
 
-      <FilterModal
-        visible={activeModal == "theme"}
-        title="Select theme"
-        options={["Chill", "Party", "Karaoke", "Live Band"]}
-        onSelect={setTheme}
-        onClose={() => setActiveModal(null)}
-      />
 
       <FilterModal
         visible={activeModal == "distance"}
         title="Max distance"
-        options={["5 miles", "10 miles", "20 miles", "50 miles"]}
+        options={["5 miles", "10 miles", "15 miles", "30 miles"]}
         onSelect={setDistance}
         onClose={() => setActiveModal(null)}
       />
 
       <FilterModal
-        visible={activeModal == "time"}
-        title="When are you going?"
-        options={["Now", "Tonight", "Tomorrow", "This weekend"]}
-        onSelect={setTime}
+        visible={activeModal == "age"}
+        title="Age"
+        options={["All ages", "18+", "21+"]}
+        onSelect={setAge}
+        onClose={() => setActiveModal(null)}
+      />
+
+      <FilterModal
+        visible={activeModal == "cost"}
+        title="cost"
+        options={["Free", "Any"]}
+        onSelect={setCost}
+        onClose={() => setActiveModal(null)}
+      />
+
+      <FilterModal
+        visible={activeModal == "hours"}
+        title="Hours"
+        options={["Now", "Opens at 8pm", "Closes at 2am"]}
+        onSelect={setHours}
         onClose={() => setActiveModal(null)}
       />
 
@@ -112,5 +146,10 @@ const styles = StyleSheet.create({
   padding: 20,
   marginTop: 100
 },
- botones: { alignItems: 'center', marginTop: 'auto', paddingBottom: 20},
+ botones: { alignItems: 'center', marginTop: 'auto', paddingBottom: 5},
+
+
+erase: {alignItems: 'center'},
+texto: {color: 'darkviolet', fontWeight: '600'}
+
 })

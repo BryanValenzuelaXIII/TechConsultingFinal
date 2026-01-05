@@ -4,6 +4,8 @@ import TextInputBig from "../components/TextInputBig";
 import ButtonFoward from "../components/ButtonFoward";
 import { FireBaseSignIn } from "../utils/FireBaseLogin";
 import Dropdown from "../components/DropDownOptions";
+import FilterModal from "../components/FilterModal";
+import FillterAge from "../components/FillterAge";
 
 const backImage = require('../../assets/WelcomeImage.jpg')
 
@@ -12,6 +14,7 @@ export default function SignUpUser(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [age, setAge] = useState('');
+    const [activeModal, setActiveModal] = useState<"age" | null>(null);
 
     const handleSignUp = async () => {
         await FireBaseSignIn({ email, password });
@@ -40,13 +43,14 @@ export default function SignUpUser(){
                 placeHolder='Please enter your name'
             />
 
-            <Dropdown
-                label="Age group?"
-                options={["<18", "18+", "21+ "]}
-                selectedValue={age}
-                onSelect={setAge}
-            />
-
+            <Text style= {styles.textForBox}>
+                {"Age"}
+            </Text>
+            <FillterAge
+                        
+                        value={age}
+                        onPress={() => setActiveModal("age")}
+                      />
             
 
             <Text style= {styles.textForBox}>
@@ -79,6 +83,14 @@ export default function SignUpUser(){
                 pressAction={handleSignUp}
             />
             </View>
+
+            <FilterModal
+                    visible={activeModal == "age"}
+                    title="Select your age"
+                    options={["<18", "18-21", "21+"]}
+                    onSelect={setAge}
+                    onClose={() => setActiveModal(null)}
+                  />
             
 
             </View>

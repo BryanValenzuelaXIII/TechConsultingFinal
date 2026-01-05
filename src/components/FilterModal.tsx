@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   modal: {
     width: "85%",
-    backgroundColor: "#fff",
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 20
   },
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
   option: {
     paddingVertical: 14,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee"
+    borderBottomColor: "violet"
   },
   optionText: {
     fontSize: 16,

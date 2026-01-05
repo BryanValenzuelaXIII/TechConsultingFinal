@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import FormText from "../components/FormText";
 import TextInputBig from "../components/TextInputBig";
 import ButtonFoward from "../components/ButtonFoward";
 
 function EditPreferences(){
+
+    const [music, setMusic] = useState('')
+    const [distance, setDistance] = useState('')
+    const [cost, setCost] = useState('')
+    const [age, setAge] = useState('')
 
     function dummyFunction(){
         console.log("dummy function inside editpreferences")
@@ -19,7 +24,7 @@ function EditPreferences(){
                 <TextInputBig 
                     typeOfText="name"
                     placeHolder="Name of the bar"
-                    onChangeText={dummyFunction}
+                    onChangeText={setMusic}
                 />
                 <FormText 
                     requireText="Distance?"
@@ -27,7 +32,7 @@ function EditPreferences(){
                 <TextInputBig 
                     typeOfText="fullStreetAddress"
                     placeHolder="location"
-                    onChangeText={dummyFunction}
+                    onChangeText={setDistance}
                 />
                 <FormText 
                     requireText="Free cover?"
@@ -35,7 +40,7 @@ function EditPreferences(){
                  <TextInputBig 
                     typeOfText="fullStreetAddress"
                     placeHolder="location"
-                    onChangeText={dummyFunction}
+                    onChangeText={setCost}
                 />
                 <FormText 
                     requireText="Age?"
@@ -43,7 +48,7 @@ function EditPreferences(){
                  <TextInputBig 
                     typeOfText="fullStreetAddress"
                     placeHolder="location"
-                    onChangeText={dummyFunction}
+                    onChangeText={setAge}
                 />
             </View>
              <View style={styles.botones}>
