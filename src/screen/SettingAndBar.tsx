@@ -18,6 +18,8 @@ export default function SettingAndBar() {
     {
         id: 0,
         label: "Edit preferences",
+        icon: require('../../assets/icons8-preferences-50.png'),
+        description: 'Edit your preferences so it shows onn the map automatically',
          execute: () => {
             storage.getBoolean('user.isGuest') ? (
                 Alert.alert("Please login to use this future")
@@ -28,6 +30,8 @@ export default function SettingAndBar() {
     }, { 
         id: 1,
         label: 'Edit your profile',
+        icon: require('../../assets/icons8-customer-50.png'),
+        description: 'Edit your preferences so it shows onn the map automatically',
         execute: () => {
             storage.getBoolean('user.isGuest') ? (
                 Alert.alert("Please login to use this future")
@@ -41,6 +45,8 @@ export default function SettingAndBar() {
         {
         id: 2,
         label: 'Add your bar/club',
+        icon: require('../../assets/icons8-add-50.png'),
+        description: 'Edit your preferences so it shows onn the map automatically',
         execute: () => {
             storage.getBoolean('user.isGuest') ? (
                 Alert.alert("Please login to use this future")
@@ -52,6 +58,8 @@ export default function SettingAndBar() {
     {
         id: 3,
         label: 'Edit your bar/club',
+        icon: require('../../assets/icons8-edit-50.png'),
+        description: 'Edit your preferences so it shows onn the map automatically',
         execute: () => {
             storage.getBoolean('user.isGuest') ? (
                 Alert.alert("Please login to use this future")

@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
     data: any[]
@@ -14,9 +14,18 @@ export default function OptionsBotton({ data }: Props) {
                 ({ item }) => 
                 <TouchableOpacity style={styles.opciones} 
                     onPress={item.execute}>
-                    <Text style={styles.texto} >
+                    <Image 
+                        source={item.icon}
+                    />
+                    <View style={styles.allText}>
+                        <Text style={styles.texto} >
                         {item.label}
-                    </Text>
+                        </Text>
+                        <Text>
+                            {item.description}
+                        </Text>
+                    </View>
+                    
                 </TouchableOpacity>
                     
 
@@ -29,8 +38,8 @@ export default function OptionsBotton({ data }: Props) {
 }
 
 const styles = StyleSheet.create({
-    opciones: {height: 44, backgroundColor: 'white', borderColor: 'white', borderWidth: 1, borderBottomColor: 'gray',
-        marginLeft: 10
-     },
-    texto: {fontSize: 22, color: 'gray'}
+    opciones: {height: 70, backgroundColor: 'white', borderColor: 'white', borderWidth: 1, borderBottomColor: 'gray',
+        marginLeft: 10, flex: 1, flexDirection: 'row'},
+    allText: {marginLeft: 10},
+    texto: {fontSize: 22, color: 'black', fontWeight: 'bold'}
 })

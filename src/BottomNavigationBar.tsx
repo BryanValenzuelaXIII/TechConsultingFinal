@@ -15,7 +15,7 @@ function BottomNavigationBar(){
     return(
         <Tabs.Navigator 
         screenOptions={({navigation}) => ({
-            headerRight: () => <ProfileButton navigation={navigation} />
+            headerRight: () => <ProfileButton />
         })}>
             <Tabs.Screen name="Search Club" component={MainScreen}
                  options={{
