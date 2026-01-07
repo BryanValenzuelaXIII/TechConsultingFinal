@@ -13,4 +13,9 @@
     send preferences/setting to the 'cloud'
 
     keep in touch your state for owner bars
+
+    clean barList and modal adding details
+    connect backend
+    edit bars functionality
+    all user data update in backend 
 */
