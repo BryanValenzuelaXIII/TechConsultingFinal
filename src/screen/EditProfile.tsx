@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import FormText from "../components/FormText";
 import TextInputBig from "../components/TextInputBig";
 import ButtonFoward from "../components/ButtonFoward";
 
 function EditProfile(){
+
+    const [name, setName] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordCofirm, setPasswordConfirm] = useState('')
+    const [eraseFav, setErase] = useState('') //should be a bool
 
     function dummyFunction(){
         console.log("dummy function inside editpreferences")
@@ -18,24 +23,32 @@ function EditProfile(){
                 />
                 <TextInputBig 
                     typeOfText="name"
-                    placeHolder="Name of the bar"
-                    onChangeText={dummyFunction}
+                    placeHolder="Change username"
+                    onChangeText={setName}
                 />
                 <FormText 
                     requireText="Change password"
                 />
                 <TextInputBig 
-                    typeOfText="fullStreetAddress"
-                    placeHolder="location"
-                    onChangeText={dummyFunction}
+                    typeOfText="password"
+                    placeHolder="New password"
+                    onChangeText={setPassword}
+                />
+                <FormText 
+                    requireText="Confirm password"
+                />
+                <TextInputBig 
+                    typeOfText="password"
+                    placeHolder="Confirm password"
+                    onChangeText={setPasswordConfirm}
                 />
                 <FormText 
                     requireText="Erase favorite list"
                 />
                  <TextInputBig 
                     typeOfText="fullStreetAddress"
-                    placeHolder="location"
-                    onChangeText={dummyFunction}
+                    placeHolder="Are you sure?"
+                    onChangeText={setErase}
                 />
             </View>
              <View style={styles.botones}>

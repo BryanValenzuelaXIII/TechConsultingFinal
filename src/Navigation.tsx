@@ -17,13 +17,13 @@ import AddBar from "./screen/AddBar";
 import EditPreferences from "./screen/EditPreferences";
 import EditProfile from "./screen/EditProfile";
 import EditBars from "./screen/EditBars";
+import ShowBarResults from "./screen/ShowBarResults";
 
 const Stack = createStackNavigator();
 
 const Navigation = () =>{
 
     const [user, setUser] = useState<any>(null);
-    const [isGuest, setIsGuest] = useState(false);
     const [loading, setLoading] = useState(true);
 
     const guest = useSelector((state: RootState) => state.guest.value)
@@ -71,6 +71,7 @@ const Navigation = () =>{
                         <Stack.Screen name="EditPreferences" component={EditPreferences} />
                         <Stack.Screen name="EditProfile" component={EditProfile} />
                         <Stack.Screen name="EditBars" component={EditBars} />
+                        <Stack.Screen name="ShowBarResults" component={ShowBarResults} />
                     </>
                         
                 )

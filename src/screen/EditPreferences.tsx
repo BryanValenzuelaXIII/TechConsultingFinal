@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import FormText from "../components/FormText";
 import TextInputBig from "../components/TextInputBig";
 import ButtonFoward from "../components/ButtonFoward";
+import { storage } from "../utils/MmkvStorage";
 
 function EditPreferences(){
 
@@ -15,6 +16,13 @@ function EditPreferences(){
         console.log("dummy function inside editpreferences")
     }
 
+    function updatePref(){
+        storage.set('user.music', music)
+        storage.set('user.distance', distance)
+        storage.set('user.cost', cost)
+        storage.set('user.age', age)
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.boxForm}>
@@ -23,7 +31,7 @@ function EditPreferences(){
                 />
                 <TextInputBig 
                     typeOfText="name"
-                    placeHolder="Name of the bar"
+                    placeHolder="Choose an option"
                     onChangeText={setMusic}
                 />
                 <FormText 
@@ -31,7 +39,7 @@ function EditPreferences(){
                 />
                 <TextInputBig 
                     typeOfText="fullStreetAddress"
-                    placeHolder="location"
+                    placeHolder="Choose an option"
                     onChangeText={setDistance}
                 />
                 <FormText 
@@ -39,7 +47,7 @@ function EditPreferences(){
                 />
                  <TextInputBig 
                     typeOfText="fullStreetAddress"
-                    placeHolder="location"
+                    placeHolder="Choose an option"
                     onChangeText={setCost}
                 />
                 <FormText 
@@ -47,14 +55,14 @@ function EditPreferences(){
                 />
                  <TextInputBig 
                     typeOfText="fullStreetAddress"
-                    placeHolder="location"
+                    placeHolder="Choose an option"
                     onChangeText={setAge}
                 />
             </View>
              <View style={styles.botones}>
                 <ButtonFoward 
                 textInside="Change preferences"
-                pressAction={dummyFunction}
+                pressAction={updatePref}
             />
             </View>
 

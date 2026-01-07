@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Alert, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Dropdown from "../components/DropDownOptions";
+
 import FilterModal from "../components/FilterModal";
 import FilterRow from "../components/FileterRow";
 import ButtonFoward from "../components/ButtonFoward";
+import { useNavigation } from "@react-navigation/native";
 
 const backImage = require('../../assets/club_placeholder.jpg')
 
@@ -17,6 +18,7 @@ export default function WelcomeScreen() {
   const [distance, setDistance] = useState<string | null>(null);
   const [cost, setCost] = useState<string | null>(null);
   const [hours, setHours] = useState<string | null>(null);
+  const navigation = useNavigation();
 
   function dummyFunction(){
         console.log("dummy function inside editpreferences")
@@ -26,6 +28,10 @@ export default function WelcomeScreen() {
       setCost(null);
       setHours(null);
     }
+
+  function searchBar (){
+    navigation.navigate('ShowBarResults')
+  }
 
   return (
     <View style={styles.container}>
@@ -64,7 +70,7 @@ export default function WelcomeScreen() {
           <View style={styles.botones}>
                 <ButtonFoward 
                 textInside="Look for a bar!"
-                pressAction={dummyFunction}
+                pressAction={searchBar}
             />
             </View>
 
