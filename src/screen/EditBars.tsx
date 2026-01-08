@@ -1,77 +1,67 @@
-import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import FormText from "../components/FormText";
-import TextInputBig from "../components/TextInputBig";
-import ButtonFoward from "../components/ButtonFoward";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, ScrollView, FlatList } from "react-native";
 import SubTitle from "../components/SubTitle";
-import OptionsBotton from "../components/OptionsBotton";
-import { getAllBars, getYourBar } from "../utils/GetBars";
-import { storage } from "../utils/MmkvStorage";
+import BarList from "../components/BarList";
+import { getYourBar } from "../utils/GetBars";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/reduxStore";
+import { fetchUserBarsRequest } from "../redux/barsSlice";
+import { getAuth } from "@react-native-firebase/auth";
 
-function EditBars(){
+function EditBars() {
+  const [myBars, setMyBars] = useState<any[]>([]);
+  const dispatch = useDispatch();
+  const { userBars, loadingUser }  = useSelector((state: RootState) => state.bars)
 
-    const [myBars, setMyBars] = useState<any[]>([]);
-    //storage.getString("user.email")
-    const populateBars = async() => {
+  /*useEffect(() => {
+    const fetchBars = async () => {
+      try {
         const bars = await getYourBar("email@email.com");
         setMyBars(bars);
-    }
+      } catch (error) {
+        console.error("Failed to fetch bars:", error);
+      }
+    };
 
-     const BarsDummy = [
-        {
-            id: 0,
-            label: "Bar 1",
-             
-        }, { 
-            id: 1,
-            label: 'Bar 2',
-            execute: () => {
-                dummyFunction();
-            }
-        },]
+    fetchBars();
+  }, []); */
 
-    function dummyFunction(){
-        console.log("dummy function inside editpreferences")
-    }
+  useEffect(() => {
+    const email = getAuth().currentUser?.email;
 
-    return(
-        <View style={styles.container}>
-            
-            <View style={styles.opciones}>
-                <SubTitle 
-                    sub="SELECT YOUR BAR"
-                />
-                <OptionsBotton 
-                    data={BarsDummy}
-                />
-            </View>
-            {  myBars ? (
-                <View style={{flex:1}}>
-                    {myBars.map(bar => (
-                        <Text key={bar.id}>{bar.musicType}</Text>
-                    ))}
-                    <Button
-                    title="populate bars"
-                    onPress={populateBars}
-                    ></Button>
-                </View>
-                ): 
-                (<Button
-                title="populate bars"
-                onPress={populateBars}
-                >
-                </Button>) 
-            }
-        </View>
-    )
+    if (!email) return;
+
+    dispatch(fetchUserBarsRequest({ owner: email }));
+  }, [dispatch]);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <SubTitle sub="SELECT YOUR BAR" />
+      </View>
+
+      <FlatList
+        data={userBars}
+        keyExtractor={(item) => item.id ?? item.name}
+        style={{ flex: 1 }}
+        refreshing={loadingUser}
+        renderItem={({ item }) => (
+          <BarList
+            title={item.name}
+            typeOfMusic={item.musicType}
+            hoursOfOperation={item.operationHours}
+            onPress={() => console.log('Pressed bar:', item.name)}
+          />
+        )}
+      />
+    </View>
+  );
 }
 
-export default EditBars
+export default EditBars;
 
 const styles = StyleSheet.create({
-    container: { flex: 1, },
-    login: { backgroundColor: 'white', alignContent: 'center' },
-    opciones: {flex: 1, justifyContent: 'flex-start', backgroundColor: 'white'},
-    botones: { alignItems: 'center', marginTop: 'auto', paddingBottom: 20},
-    textTitle: { fontSize: 40, fontWeight: '700', margin: 10 }
-})
+  container: { flex: 1, backgroundColor: "white" },
+  header: { padding: 10 },
+  barListContainer: { flex: 1 },
+});
