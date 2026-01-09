@@ -7,24 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reduxStore";
 import { fetchUserBarsRequest } from "../redux/barsSlice";
 import { getAuth } from "@react-native-firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
 function EditBars() {
-  const [myBars, setMyBars] = useState<any[]>([]);
+
   const dispatch = useDispatch();
   const { userBars, loadingUser }  = useSelector((state: RootState) => state.bars)
-
-  /*useEffect(() => {
-    const fetchBars = async () => {
-      try {
-        const bars = await getYourBar("email@email.com");
-        setMyBars(bars);
-      } catch (error) {
-        console.error("Failed to fetch bars:", error);
-      }
-    };
-
-    fetchBars();
-  }, []); */
+  const navigation = useNavigation();
 
   useEffect(() => {
     const email = getAuth().currentUser?.email;
@@ -50,7 +39,7 @@ function EditBars() {
             title={item.name}
             typeOfMusic={item.musicType}
             hoursOfOperation={item.operationHours}
-            onPress={() => console.log('Pressed bar:', item.name)}
+            onPress={() => navigation.navigate("EditBarDetails", { bar: item })}
           />
         )}
       />

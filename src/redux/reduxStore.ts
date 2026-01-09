@@ -3,13 +3,14 @@ import guestReducer from './guestSlice'
 import barsReducer from './barsSlice';
 import { barsSaga } from './sagas/barsSaga';
 import createSagaMiddleware from 'redux-saga';
+import userReducer from "./userSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
     guest: guestReducer,
-    //profile: profileReducer,
+    user: userReducer,
     bars: barsReducer,
   }, middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -9,8 +9,8 @@ type Props = {
 
 export default function ModalForm({ value, onPress }: Props) {
   return (
-    <TouchableOpacity style={styles.row} onPress={onPress}>
-      <Text style={styles.value}>
+    <TouchableOpacity style={styles.row} onPress={onPress} >
+      <Text style={styles.value} >
         {value ?? "Select an option"}
       </Text>
     </TouchableOpacity>

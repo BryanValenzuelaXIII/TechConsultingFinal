@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import FilterRow from "../components/FileterRow";
 import ModalForm from "../components/ModalForm";
 import FilterModal from "../components/FilterModal";
+import addressToCoordinate from "../utils/addressToCoordinate"
 
 function AddBar() {
 
@@ -19,6 +20,7 @@ function AddBar() {
     const [cost, setCost] = useState('')
     const [description, setDescription] = useState("");
     const [age, setAge] = useState('')
+    const [coordinates, setCoordinates] = useState(null);
 
     const [activeModal, setActiveModal] = useState<
         "music" | "age" | "cost" | "hours" | null
@@ -26,17 +28,7 @@ function AddBar() {
 
     const navigation = useNavigation();
 
-    const bar = {
-        name,
-        location,
-        musicType,
-        operationHours,
-        age,
-        description,
-        cost,
-        owner: storage.getString("user.email"),
-        songsListed: ["Apology", "zouk", "perro negro", "Con calma", "sun flowers"],
-    };
+
 
     function getStringArray(key: string): string[] {
         const allBars = storage.getString(key);
@@ -49,17 +41,48 @@ function AddBar() {
         //this is to update owners bars
     }
 
-    function submit() {
-        storeDocumentWithId('Bars', name, bar);
+    async function submit() {
+        try {
+            if (!location) {
+                Alert.alert("Please enter a valid address");
+                return;
+            }
+            const coords = await addressToCoordinate(location);
+
+            const bar = {
+                name,
+                location,
+                latitude: coords.latitude,
+                longitude: coords.longitude,
+                musicType,
+                operationHours,
+                age,
+                description,
+                cost: cost || null,
+                owner: storage.getString("user.email"),
+                songsListed: [
+                    "Apology",
+                    "zouk",
+                    "perro negro",
+                    "Con calma",
+                    "sun flowers",
+                ],
+            };
+
+            storeDocumentWithId('Bars', name, bar);
 
 
-        const existingBars = getStringArray("user.ownerBars");
-        const updatedBars = [...existingBars, name];
+            const existingBars = getStringArray("user.ownerBars");
+            const updatedBars = [...existingBars, name];
 
-        setStringArray("user.ownerBars", updatedBars);
+            setStringArray("user.ownerBars", updatedBars);
 
-        Alert.alert("Bar added!");
-        navigation.goBack();
+            Alert.alert("Bar added!");
+            navigation.goBack();
+        } catch (error) {
+            console.log(error);
+            Alert.alert("Error", "Could not save bar location");
+        }
     }
 
     return (

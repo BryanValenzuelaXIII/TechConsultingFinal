@@ -18,6 +18,7 @@ import EditPreferences from "./screen/EditPreferences";
 import EditProfile from "./screen/EditProfile";
 import EditBars from "./screen/EditBars";
 import ShowBarResults from "./screen/ShowBarResults";
+import EditBarDetails from "./screen/EditBarDetails";
 
 const Stack = createStackNavigator();
 
@@ -72,6 +73,8 @@ const Navigation = () =>{
                         <Stack.Screen name="EditProfile" component={EditProfile} />
                         <Stack.Screen name="EditBars" component={EditBars} />
                         <Stack.Screen name="ShowBarResults" component={ShowBarResults} />
+                        <Stack.Screen name="EditBarDetails" component={EditBarDetails} />
+                        
                     </>
                         
                 )

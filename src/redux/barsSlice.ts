@@ -21,7 +21,7 @@ const barsSlice = createSlice({
   name: 'bars',
   initialState,
   reducers: {
-    // ALL BARS
+  
     fetchAllBarsRequest(state) {
       state.loadingAll = true;
     },
@@ -30,7 +30,6 @@ const barsSlice = createSlice({
       state.allBars = payload;
     },
 
-    // USER BARS (INLINE DESTRUCTURING)
     fetchUserBarsRequest(
       state,
       { payload }: PayloadAction<{ owner: string }>
