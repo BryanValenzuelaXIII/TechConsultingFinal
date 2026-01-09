@@ -8,13 +8,15 @@ import {
     Dimensions,
 } from "react-native";
 import ButtonFoward from "./ButtonFoward";
+import SubTitle from "./SubTitle";
 
 type Bar = {
-    id: string;
-    title: string;
-    typeOfMusic: string;
-    hoursOfOperation: string;
-    description: string;
+    name: string,
+    musicType: string
+    operationHours: string,
+    cost: string,
+    location: string,
+    age: string,
 };
 
 type Props = {
@@ -37,20 +39,33 @@ const BarDetailsModal = ({ visible, bar, onPress }: Props) => {
         >
             <View style={styles.overlay}>
                 {/* Bottom sheet container */}
-                <View style={[styles.container, { height: screenHeight * 0.66 }]}>
-                    <Text style={styles.title}>{bar.title}</Text>
-
-                    <Text style={styles.text}>{bar.typeOfMusic}</Text>
-                    <Text style={styles.text}>{bar.hoursOfOperation}</Text>
-
-                    <Text style={[styles.text, { marginTop: 10 }]}>
-                        {bar.description}
+                <View style={[styles.container, { height: screenHeight * 0.50 }]}>
+                    <SubTitle 
+                        sub={bar.name}
+                    />
+                    <Text style={styles.text}>
+                       Type of music: {bar.musicType}
+                    </Text>
+                    <Text style={styles.text}>
+                       Hours of operation: {bar.operationHours}
+                    </Text>
+                    <Text style={styles.text}>
+                       Age restriction: {bar.age}
                     </Text>
 
-                    <ButtonFoward 
+                    <Text style={[styles.text, { marginTop: 10 }]}>
+                       Entry fee: {bar.cost}
+                    </Text>
+                    <Text>
+                       Location {bar.location}
+                    </Text>
+                    <View style={styles.close}>
+                        <ButtonFoward 
                         textInside="Close"
                         pressAction={onPress}
                     />
+                    </View>
+                    
                 </View>
             </View>
         </Modal>
@@ -92,4 +107,8 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
     },
+    close: {
+        marginTop: 'auto',
+        alignItems: 'center'
+    }
 });
