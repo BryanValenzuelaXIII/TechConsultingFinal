@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Alert, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
 import FilterModal from "../components/FilterModal";
 import FilterRow from "../components/FileterRow";
 import ButtonFoward from "../components/ButtonFoward";
@@ -20,8 +19,7 @@ export default function WelcomeScreen() {
   const [hours, setHours] = useState<string | null>(null);
   const navigation = useNavigation();
 
-  function dummyFunction(){
-        console.log("dummy function inside editpreferences")
+  function resetButton(){
       setMusic(null);
       setAge(null);
       setDistance(null);
@@ -30,7 +28,7 @@ export default function WelcomeScreen() {
     }
 
   function searchBar (){
-    navigation.navigate('ShowBarResults')
+    navigation.navigate('ShowBarResults', {music, age, distance, cost, hours})
   }
 
   return (
@@ -76,7 +74,7 @@ export default function WelcomeScreen() {
 
           <View style={styles.erase}>
             <TouchableOpacity
-              onPress={dummyFunction}
+              onPress={resetButton}
             >
                 <Text style={styles.texto}>
                   {"Reset fields" /*create function + create in utils filter results */}
@@ -92,7 +90,7 @@ export default function WelcomeScreen() {
       <FilterModal
         visible={activeModal == "music"}
         title="Select music type"
-        options={["Pop", "Rock", "Hip Hop", "Jazz", "Electronic"]}
+        options={["Pop", "Rock", "Latin", "Jazz", "Electronic", "Alternative"]}
         onSelect={setMusic}
         onClose={() => setActiveModal(null)}
       />
@@ -125,7 +123,7 @@ export default function WelcomeScreen() {
       <FilterModal
         visible={activeModal == "hours"}
         title="Hours"
-        options={["Now", "Opens at 8pm", "Closes at 2am"]}
+        options={["10am - 2am", "5pm - 2am", "8pm - 2am"]}
         onSelect={setHours}
         onClose={() => setActiveModal(null)}
       />

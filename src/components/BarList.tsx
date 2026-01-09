@@ -13,7 +13,7 @@ const BarList = ({ title, typeOfMusic, hoursOfOperation, onPress }: Props) => {
         <TouchableOpacity style={styles.container} onPress={onPress}>
             <View style={styles.main}>
                 <View style={styles.icon}>
-                    <Image source={require('../../assets/icons8-user-40.png')} />
+                    <Image source={require('../../assets/icons8-beer-45.png')} />
                 </View>
 
                 <View style={styles.info}>

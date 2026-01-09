@@ -5,6 +5,8 @@ import BarDetailsModal from "../components/BarDetailsModal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/reduxStore";
 import { fetchAllBarsRequest } from "../redux/barsSlice";
+import { useRoute } from "@react-navigation/native";
+import { filterBars } from "../utils/filterBars";
 
 type Bar = {
     id: string;
@@ -15,46 +17,33 @@ type Bar = {
     location: string;
 };
 
+
+
 type Props = {};
 
 const ShowBarResults = ({ }: Props) => {
+    const route = useRoute();
+    
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [selectedBar, setSelectedBar] = useState<Bar | null>(null);
     const dispatch = useDispatch();
     const { allBars, loadingAll } = useSelector(
         (state: RootState) => state.bars
     );
-
+    const { music, age, distance, cost, hours } = route.params ?? {};
+    
     useEffect(() => {
         dispatch(fetchAllBarsRequest());
     }, [dispatch]);
 
-    // const bars: Bar[] = [
-    //     {
-    //         id: "1",
-    //         title: "The Jazz Lounge",
-    //         typeOfMusic: "Jazz / Blues",
-    //         hoursOfOperation: "6 PM - 2 AM",
-    //         description: "Live jazz every night with local artists.",
-    //         location: 'Atlanta'
-    //     },
-    //     {
-    //         id: "2",
-    //         title: "Neon Nights",
-    //         typeOfMusic: "EDM / House",
-    //         hoursOfOperation: "8 PM - 4 AM",
-    //         description: "High-energy club with famous DJs.",
-    //         location: 'Mars'
-    //     },
-    //     {
-    //         id: "3",
-    //         title: "Retro Vibes",
-    //         typeOfMusic: "80s / 90s Hits",
-    //         hoursOfOperation: "5 PM - 1 AM",
-    //         description: "Throwback music and themed nights.",
-    //         location: 'El Paso'
-    //     },
-    // ];
+    const filteredBars = filterBars(allBars, {
+        music,
+        age,
+        distance,
+        cost,
+        hours,
+    });
+
 
     const openModal = (bar: Bar) => {
         setSelectedBar(bar);
@@ -69,7 +58,7 @@ const ShowBarResults = ({ }: Props) => {
     return (
         <View style={{ flex: 1, backgroundColor: "gray" }}>
             <FlatList
-                data={allBars}
+                data={filteredBars}
                 refreshing={loadingAll}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
