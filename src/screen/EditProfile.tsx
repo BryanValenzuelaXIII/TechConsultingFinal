@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import FormText from "../components/FormText";
 import TextInputBig from "../components/TextInputBig";
 import ButtonFoward from "../components/ButtonFoward";
+import { useNavigation } from "@react-navigation/native";
 
 function EditProfile(){
 
@@ -10,9 +11,11 @@ function EditProfile(){
     const [password, setPassword] = useState('')
     const [passwordCofirm, setPasswordConfirm] = useState('')
     const [eraseFav, setErase] = useState('') //should be a bool
+    const navigation = useNavigation();
 
     function dummyFunction(){
-        console.log("dummy function inside editpreferences")
+        Alert.alert("Successful change")
+        navigation.goBack();
     }
 
     return(

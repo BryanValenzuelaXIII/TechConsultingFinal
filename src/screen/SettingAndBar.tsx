@@ -8,6 +8,7 @@ import { FireBaseLogOut } from "../utils/FireBaseLogin";
 import OptionsBotton from "../components/OptionsBotton";
 import { useNavigation } from "@react-navigation/native";
 import SubTitle from "../components/SubTitle";
+import { clearFavorites } from "../redux/userSlice";
 
 
 export default function SettingAndBar() {
@@ -72,13 +73,6 @@ export default function SettingAndBar() {
 
     const dispatch = useDispatch()
 
-    function dummyFunction(){
-        console.log("press button")
-    }
-
-    function dummyFunction2(){
-        console.log("preciono buton 2")
-    }
 
     const fakeLogin = () => {
         storage.set('user.isGuest', false);
@@ -86,6 +80,7 @@ export default function SettingAndBar() {
     }
 
     const handleLogOut = () => {
+        dispatch(clearFavorites());
         FireBaseLogOut();
     }
 

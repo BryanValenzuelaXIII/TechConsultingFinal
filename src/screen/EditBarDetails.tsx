@@ -11,8 +11,7 @@ export default function EditBarDetails() {
   const navigation = useNavigation();
   const { bar } = route.params;
 
-  const [name] = useState(bar.name); // Assume name is not editable
-  const [location, setLocation] = useState(bar.location ?? "");
+  const [name] = useState(bar.name); // name is not editable
   const [musicType, setMusicType] = useState(bar.musicType ?? "");
   const [operationHours, setOperationHours] = useState(bar.operationHours ?? "");
   const [age, setAge] = useState(bar.age ?? "");
@@ -22,7 +21,6 @@ export default function EditBarDetails() {
   const handleSave = async () => {
     const updatedBar = {
       ...bar,
-      location,
       musicType,
       operationHours,
       age,
@@ -41,14 +39,7 @@ export default function EditBarDetails() {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <FormText requireText="Location" />
-      <TextInputBig
-        placeHolder="Enter location"
-        value={location}
-        onChangeText={setLocation}
-      />
-
+    <View style={styles.boxForm}>
       <FormText requireText="Music Type" />
       <TextInputBig
         placeHolder="Enter music type"
@@ -87,11 +78,15 @@ export default function EditBarDetails() {
       <View style={styles.botones}>
         <ButtonFoward textInside="Save Changes" pressAction={handleSave} />
       </View>
-    </ScrollView>
+    </View>
+
+
+
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: "white" },
+  boxForm: { margin: 10, borderWidth: 1, borderRadius: 13, padding: 13, elevation: 13, backgroundColor: 'white', marginHorizontal: 10 },
   botones: { alignItems: "center", marginTop: 20 },
 });

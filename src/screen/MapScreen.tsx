@@ -99,10 +99,6 @@ export default function PreferencesScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.login}>
-                <TextInputBig
-                    typeOfText="name"
-                    placeHolder="Enter the address or name of the place"
-                />
 
                 {userLocation && (
                     <MapView
