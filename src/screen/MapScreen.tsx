@@ -11,6 +11,7 @@ import TextInputBig from "../components/TextInputBig";
 import BarDetailsModal from "../components/BarDetailsModal";
 import { fetchAllBarsRequest } from "../redux/barsSlice";
 import { RootState } from "../redux/reduxStore";
+import { filterBars } from "../utils/filterBars";
 
 type UserLocation = {
     latitude: number;
@@ -38,6 +39,9 @@ export default function PreferencesScreen() {
 
     const dispatch = useDispatch();
     const { allBars } = useSelector((state: RootState) => state.bars);
+    const { music, age, distance, cost } = useSelector(
+        (state: RootState) => state.user
+    );
 
     const getLocation = async () => {
         const hasPermission = await requestLocationPermission();
@@ -81,10 +85,19 @@ export default function PreferencesScreen() {
         useCallback(() => {
             getLocation();
             dispatch(fetchAllBarsRequest());
+
         }, [dispatch])
     );
 
     const bars: Bar[] = allBars;
+    const specificBar = React.useMemo(() => {
+        return filterBars(bars, {
+            music: music || null,
+            age: age || null,
+            distance: distance || null,
+            cost: cost || null,
+        });
+    }, [bars, music, age, distance, cost]);
 
     const openModal = (bar: Bar) => {
         setSelectedBar(bar);
@@ -96,6 +109,8 @@ export default function PreferencesScreen() {
         setModalVisible(false);
     };
 
+    const mapKey = `${music}-${age}-${distance}-${cost}`;
+
     return (
         <View style={styles.container}>
             <View style={styles.login}>
@@ -104,6 +119,7 @@ export default function PreferencesScreen() {
                     <MapView
                         provider={PROVIDER_GOOGLE}
                         style={{ flex: 1 }}
+                        key={mapKey}
                         initialRegion={{
                             latitude: userLocation.latitude,
                             longitude: userLocation.longitude,
@@ -111,7 +127,7 @@ export default function PreferencesScreen() {
                             longitudeDelta: 0.0821,
                         }}
                     >
-                        {bars.map(bar => {
+                        {specificBar.map(bar => {
                             if (!bar.latitude || !bar.longitude) return null;
 
                             return (
@@ -143,8 +159,6 @@ export default function PreferencesScreen() {
         </View>
     );
 }
-
-/* ---------- STYLES ---------- */
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
